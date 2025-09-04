@@ -1,18 +1,23 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <script src="js/main.js"></script>
     <link rel="stylesheet" href="css/main.css">
-    
+
     <!-- get rid of favicon error -->
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-  </head>
-  <body>
-    <form>
-      <input type="text" id="yourname" value="your name here">
-      <button>submit</button>
+</head>
+<body>
+<div class="flex-container">
+    <form id="myForm" class="flex-form">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Name">
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" placeholder="DOB">
+        <button type="submit">submit</button>
     </form>
-  </body>
+</div>
+</body>
 </html>

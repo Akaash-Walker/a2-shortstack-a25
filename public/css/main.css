@@ -1,4 +1,30 @@
 body {
-  background:black;
-  color:white;
+    background: black;
+    color: white;
+    font-family: sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: row;
+}
+
+.flex-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.table-container {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    max-height: 80vh;
+    overflow-y: auto;
 }

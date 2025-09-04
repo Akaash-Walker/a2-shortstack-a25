@@ -1,5 +1,4 @@
 {
-  "name": "",
   "version": "",
   "description": "",
   "author": "",
@@ -7,6 +6,7 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.6.0"
+    "mime": "^2.6.0",
+    "nodemon": "^3.1.10"
   }
 }
