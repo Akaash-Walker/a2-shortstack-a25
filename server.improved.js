@@ -18,6 +18,17 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+const calculateAge = ( dob ) => {
+    const birthDate = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
+
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
@@ -39,9 +50,11 @@ const handlePost = function( request, response ) {
   })
 
   request.on( "end", function() {
-    console.log( JSON.parse( dataString ) )
+    const parsedData = JSON.parse( dataString )
 
-    appdata.push( dataString );
+    parsedData.age = calculateAge( parsedData.dob )
+
+    appdata.push( parsedData );
     console.log( appdata );
 
     response.writeHead( 200, "OK", {"Content-Type": "text/plain" })
