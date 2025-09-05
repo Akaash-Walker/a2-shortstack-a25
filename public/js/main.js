@@ -22,23 +22,23 @@ const submit = async function( event ) {
     console.log( "text:", text )
 }
 
-const fetchTable = async () => {
-    const response = await fetch( "/table")
-    const data = await response.json()
-
-    console.log( "data:", data )
-
-    let table = "<table><tr><th>Name</th><th>DOB</th></tr>"
-
-    for( let i=0; i<data.length; i++ ) {
-        const entry = JSON.parse( data[i] )
-        table += `<tr><td>${entry.name}</td><td>${entry.dob}</td></tr>`
-    }
-
-    table += "</table>"
-
-    document.querySelector("#tableBody").innerHTML = table
-}
+// const fetchTable = async () => {
+//     const response = await fetch( "/table")
+//     const data = await response.json()
+//
+//     console.log( "data:", data )
+//
+//     let table = "<table><tr><th>Name</th><th>DOB</th></tr>"
+//
+//     for( let i=0; i<data.length; i++ ) {
+//         const entry = JSON.parse( data[i] )
+//         table += `<tr><td>${entry.name}</td><td>${entry.dob}</td></tr>`
+//     }
+//
+//     table += "</table>"
+//
+//     document.querySelector("#tableBody").innerHTML = table
+// }
 
 window.onload = function() {
     const button = document.querySelector("button");
