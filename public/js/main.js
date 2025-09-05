@@ -59,9 +59,29 @@ const deleteEntry = function(event) {
     });
 }
 
+const changeDob = (e) => {
+    e.preventDefault();
+    const lookupName = document.querySelector("#changeName").value;
+    const newDob = document.querySelector("#changeDob").value;
+
+    fetch("/change", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name: lookupName, dob: newDob })
+    })
+    .then(response => response.json())
+    .then(updatedData => {
+        updateTable(updatedData);
+    });
+}
+
 window.onload = function() {
     const button = document.querySelector("button");
     const deleteForm = document.getElementById("deleteForm");
+    const changeForm = document.getElementById("changeForm");
+    changeForm.onsubmit = changeDob;
     deleteForm.onsubmit = deleteEntry;
     button.onclick = submit;
 }

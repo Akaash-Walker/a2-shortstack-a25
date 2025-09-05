@@ -75,8 +75,31 @@ const handlePost = function (request, response) {
             const nameToDelete = parsedData.name;
             const dobToDelete = parsedData.dob;
 
-            // Filter out the entry to be deleted
-            appdata = appdata.filter(entry => !(entry.name === nameToDelete && entry.dob === dobToDelete));
+            appdata = appdata.filter(entry => !(entry.name.toLowerCase() === nameToDelete.toLowerCase() && entry.dob === dobToDelete));
+            console.log(appdata);
+
+            response.writeHead(200, "OK", {"Content-Type": "text/plain"});
+            response.end(JSON.stringify(appdata));
+        });
+    } else if (request.url === "/change") {
+        let dataString = "";
+
+        request.on("data", function (data) {
+            dataString += data;
+        });
+
+        request.on("end", function () {
+            const parsedData = JSON.parse(dataString);
+            const lookupName = parsedData.name;
+            const newDob = parsedData.dob;
+
+            appdata = appdata.map(entry => {
+                if (entry.name.toLowerCase() === lookupName.toLowerCase()) {
+                    entry.dob = newDob;
+                    entry.age = calculateAge(newDob);
+                }
+                return entry;
+            });
             console.log(appdata);
 
             response.writeHead(200, "OK", {"Content-Type": "text/plain"});
