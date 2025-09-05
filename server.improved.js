@@ -24,8 +24,7 @@ const handleGet = function( request, response ) {
   if( request.url === "/" ) {
     sendFile( response, "public/index.html" )
   } else if( request.url === "/table" ) {
-    response.writeHead( 200, "OK", {"Content-Type": "application/json" })
-    response.end( JSON.stringify( appdata ) )
+    sendFile( response, "public/table.html" )
   }
   else{
     sendFile( response, filename )
