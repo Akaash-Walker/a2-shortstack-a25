@@ -13,13 +13,33 @@
 <div>
     <div class="flex-container">
         <form id="myForm" class="flex-form">
+            <h1>Store your information</h1>
             <label for="name">Name</label>
             <input type="text" id="name" placeholder="Name">
             <label for="dob">Date of Birth</label>
-            <input type="date" id="dob" placeholder="DOB">
+            <input type="date" id="dob">
+            <button type="submit">submit</button>
+        </form>
+        <form id="deleteForm" class="flex-form">
+            <h1>Delete your information</h1>
+            <label for="deleteName">Name</label>
+            <input type="text" id="deleteName" placeholder="Name">
+            <label for="deleteDob">Date of Birth</label>
+            <input type="date" id="deleteDob">
             <button type="submit">submit</button>
         </form>
     </div>
+    <table class="table-container">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

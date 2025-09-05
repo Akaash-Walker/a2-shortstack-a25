@@ -1,5 +1,23 @@
 // FRONT-END (CLIENT) JAVASCRIPT HERE
 
+// deletes and redraws the table with new data
+const updateTable = (newData) => {
+    const table = document.querySelector("table")
+    const tbody = table.querySelector("tbody")
+    tbody.innerHTML = "";
+
+    newData.forEach( (row) => {
+        const newRow = tbody.insertRow(-1)
+        const nameCell = newRow.insertCell(0)
+        const dobCell = newRow.insertCell(1)
+        const ageCell = newRow.insertCell(2)
+
+        nameCell.innerText = row.name
+        dobCell.innerText = row.dob
+        ageCell.innerText = row.age
+    })
+}
+
 const submit = async function( event ) {
     // stop form submission from trying to load
     // a new .html page for displaying results...
@@ -17,30 +35,33 @@ const submit = async function( event ) {
         body
     })
 
-    const text = await response.text()
+    const tableData = await response.json()
 
-    console.log( "text:", text )
+    updateTable(tableData);
 }
 
-// const fetchTable = async () => {
-//     const response = await fetch( "/table")
-//     const data = await response.json()
-//
-//     console.log( "data:", data )
-//
-//     let table = "<table><tr><th>Name</th><th>DOB</th></tr>"
-//
-//     for( let i=0; i<data.length; i++ ) {
-//         const entry = JSON.parse( data[i] )
-//         table += `<tr><td>${entry.name}</td><td>${entry.dob}</td></tr>`
-//     }
-//
-//     table += "</table>"
-//
-//     document.querySelector("#tableBody").innerHTML = table
-// }
+const deleteEntry = function(event) {
+    event.preventDefault();
+
+    const nameToDelete = document.querySelector("#deleteName").value;
+    const dobToDelete = document.querySelector("#deleteDob").value;
+
+    fetch("/delete", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name: nameToDelete, dob: dobToDelete })
+    })
+    .then(response => response.json())
+    .then(updatedData => {
+        updateTable(updatedData);
+    });
+}
 
 window.onload = function() {
     const button = document.querySelector("button");
+    const deleteForm = document.getElementById("deleteForm");
+    deleteForm.onsubmit = deleteEntry;
     button.onclick = submit;
 }
