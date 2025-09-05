@@ -6,7 +6,7 @@ const updateTable = (newData) => {
     const tbody = table.querySelector("tbody")
     tbody.innerHTML = "";
 
-    newData.forEach( (row) => {
+    newData.forEach((row) => {
         const newRow = tbody.insertRow(-1)
         const nameCell = newRow.insertCell(0)
         const dobCell = newRow.insertCell(1)
@@ -18,7 +18,7 @@ const updateTable = (newData) => {
     })
 }
 
-const submit = async function( event ) {
+const submit = async function (event) {
     // stop form submission from trying to load
     // a new .html page for displaying results...
     // this was the original browser behavior and still
@@ -28,10 +28,10 @@ const submit = async function( event ) {
     const name = document.querySelector("#name").value
     const dob = document.querySelector("#dob").value
 
-    const body = JSON.stringify( { name: name, dob: dob} )
+    const body = JSON.stringify({name: name, dob: dob})
 
-    const response = await fetch( "/submit", {
-        method:"POST",
+    const response = await fetch("/submit", {
+        method: "POST",
         body
     })
 
@@ -40,7 +40,7 @@ const submit = async function( event ) {
     updateTable(tableData);
 }
 
-const deleteEntry = function(event) {
+const deleteEntry = function (event) {
     event.preventDefault();
 
     const nameToDelete = document.querySelector("#deleteName").value;
@@ -51,12 +51,12 @@ const deleteEntry = function(event) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name: nameToDelete, dob: dobToDelete })
+        body: JSON.stringify({name: nameToDelete, dob: dobToDelete})
     })
-    .then(response => response.json())
-    .then(updatedData => {
-        updateTable(updatedData);
-    });
+        .then(response => response.json())
+        .then(updatedData => {
+            updateTable(updatedData);
+        });
 }
 
 const changeDob = (e) => {
@@ -69,19 +69,31 @@ const changeDob = (e) => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ name: lookupName, dob: newDob })
+        body: JSON.stringify({name: lookupName, dob: newDob})
     })
-    .then(response => response.json())
-    .then(updatedData => {
-        updateTable(updatedData);
-    });
+        .then(response => response.json())
+        .then(updatedData => {
+            updateTable(updatedData);
+        });
 }
 
-window.onload = function() {
+const getData = async function () {
+    const response = await fetch("/data", {
+        method: "GET"
+    })
+    return response.json()
+}
+
+
+window.onload = function () {
     const button = document.querySelector("button");
     const deleteForm = document.getElementById("deleteForm");
     const changeForm = document.getElementById("changeForm");
     changeForm.onsubmit = changeDob;
     deleteForm.onsubmit = deleteEntry;
     button.onclick = submit;
+    getData().then(response => {
+        console.log(response)
+        updateTable(response)
+    });
 }

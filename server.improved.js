@@ -34,6 +34,9 @@ const handleGet = function (request, response) {
 
     if (request.url === "/") {
         sendFile(response, "public/index.html")
+    } else if (request.url === "/data") {
+        response.writeHead(200, "OK", {"Content-Type": "application/json"});
+        response.end(JSON.stringify(appdata));
     } else {
         sendFile(response, filename)
     }

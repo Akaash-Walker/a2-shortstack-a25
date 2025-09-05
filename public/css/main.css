@@ -8,11 +8,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50vh;
     flex-direction: row;
+    gap: 20px;
+
 }
 
-
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 .flex-form {
     display: flex;
@@ -29,4 +35,15 @@ body {
     border-radius: 8px;
     max-height: 80vh;
     overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: left;
 }
