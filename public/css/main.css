@@ -1,7 +1,7 @@
 body {
     background: black;
     color: white;
-    font-family: sans-serif;
+    font-family: Futura, sans-serif;
 }
 
 .flex-container {
@@ -29,7 +29,7 @@ body {
     border-radius: 8px;
 }
 
-.table-container {
+#myTable {
     background: #222;
     padding: 20px;
     border-radius: 8px;
