@@ -54,6 +54,12 @@ const handlePost = function (request, response) {
             // convert the data string into a JSON object
             const parsedData = JSON.parse(dataString)
 
+            if (!parsedData.name || !parsedData.dob) {
+                response.writeHead(400, "Bad Request", {"Content-Type": "text/plain"})
+                response.end("Error: Missing name or date of birth")
+                return
+            }
+
             // calculate age from dob and add it to the parsedData object
             parsedData.age = calculateAge(parsedData.dob)
 
