@@ -28,6 +28,11 @@ const submit = async function (event) {
     const name = document.querySelector("#name").value
     const dob = document.querySelector("#dob").value
 
+    if (!name || !dob) {
+        alert("Please enter both name and date of birth.");
+        return;
+    }
+
     const body = JSON.stringify({name: name, dob: dob})
 
     const response = await fetch("/submit", {
@@ -46,6 +51,11 @@ const deleteEntry = function (event) {
     const nameToDelete = document.querySelector("#deleteName").value;
     const dobToDelete = document.querySelector("#deleteDob").value;
 
+    if (!nameToDelete || !dobToDelete) {
+        alert("Please enter both name and date of birth to delete an entry.");
+        return;
+    }
+
     fetch("/delete", {
         method: "POST",
         headers: {
@@ -61,8 +71,14 @@ const deleteEntry = function (event) {
 
 const changeDob = (e) => {
     e.preventDefault();
+
     const lookupName = document.querySelector("#changeName").value;
     const newDob = document.querySelector("#changeDob").value;
+
+    if (!lookupName || !newDob) {
+        alert("Please enter both name and new date of birth to change an entry.");
+        return;
+    }
 
     fetch("/change", {
         method: "POST",
