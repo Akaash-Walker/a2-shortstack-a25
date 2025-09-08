@@ -1,11 +1,17 @@
 ## Akaash's Web Application
 I created a web application that allows users to input their information to be stored on the site. A user can input their name and DOB, which is then stored into a table. User's can delete their information by inputting their name and DOB, which will remove their information from the table. They can also change their DOB by inputting their name , which will allow them to update their DOB in the table.
 
+### Base functionality
+1. User can input their name and DOB into a form, which will then be stored in the server and displayed in a table. Age is automatically calculated based on the DOB input (total of 3 fields).
+2. As mentioned before, a table is shown on the page that displays the user's name, DOB, and age.
+3. A user can lookup by name and DOB to delete their information from the table, or lookup by name to update their DOB in the table.
+4. Age is computed using DOB in the calculateAge() function.
+
 ### HTML 
 1. 3 different HTML forms that allows users to input their name and DOB.
-2. A table that displays the user's name, DOB, and age.
-3. The age field is automatically calculated based on the DOB input.
-4. Age is computed using DOB in the calculateAge() function.
+2. An SPA that has forms and a table that displays the user's name, DOB, and age.
+3. index.html does validate according to https://validator.w3.org.
+4. web app is an SPA, so not applicable here.
 
 ### CSS
 1. CSS used to style the web app. 
@@ -36,4 +42,8 @@ I created a web application that allows users to input their information to be s
    2. Norris was given the task of updating his DOB in the table. He was able to successfully update his DOB without any issues, with some confusion on how the update form worked. 
    3. Norris also determined that the web app allowed users to submit blank forms into the table.
    4. Issues resolved by adding clearer labels to each form and adding input validation to prevent blank forms from being submitted.
-3. Test 2
+3. Test 2:
+   1. Testing done with student Bresnahan
+   2. Bresnahan was given the task of deleting his information from the table. He was able to successfully delete his information without any issues.
+   3. Bresnahan also commentned on the readability, with the large and legible sans serif font.
+   4. No changes were made based on this feedback.
